@@ -129,8 +129,13 @@ export function formUrlQuery({
 
   query[key] = value;
 
-  return qs.stringifyUrl({
-    url: window.location.pathname,
-    query,
-  });
+  return qs.stringifyUrl(
+    {
+      url: window.location.pathname,
+      query,
+    },
+    {
+      skipNull: true,
+    }
+  );
 }
