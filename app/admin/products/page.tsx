@@ -1,3 +1,4 @@
+import { requireAdmin } from "@/lib/auth-guard";
 import Link from "next/link";
 import { getAllProducts, deleteProduct } from "@/lib/actions/product.actions";
 import { formatCurrency, formatId } from "@/lib/utils";
@@ -20,6 +21,7 @@ const AdminProductsPage = async (props: {
     category: string;
   }>;
 }) => {
+  await requireAdmin();
   const searchParams = await props.searchParams;
 
   const page = Number(searchParams.page) || 1;
